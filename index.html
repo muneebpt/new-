@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Manathmagalam Scholarship for Girls</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+  <style>
+    /* Reset and basic styles */
+    body {
+      background-color: #f4f4f9;
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+    /* Container */
+    .container {
+      max-width: 900px;
+      margin: 2rem auto;
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: 9px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    /* Header */
+    header {
+      text-align: center;
+      padding: 10px 0;
+    }
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 5px;
+      color: #05a595;
+      text-transform: uppercase;
+    }
+    header p {
+      margin: 0;
+      font-size: 1.75rem;
+      color: #231a1a;
+    }
+    /* Image Style */
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+    /* Horizontal Rule */
+    hr {
+      border: none;
+      border-top: 2px solid #2A9609;
+      margin: 1rem 0;
+    }
+    /* Section Titles */
+    h2 {
+      color: #2A9609;
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+      border-bottom: 2px solid #2A9609;
+      display: inline-block;
+      padding-bottom: 5px;
+    }
+    /* Instruction List */
+    ul {
+      list-style: disc;
+      margin-left: 20px;
+    }
+    /* Form styling */
+    form {
+      width: 95%;
+      margin: auto;
+      padding: 1rem;
+      background: #ecf7fb;
+      border-radius: 8px;
+    }
+    form label {
+      display: block;
+      margin: 10px 0 5px;
+      font-weight: 700;
+    }
+    form input[type="text"],
+    form input[type="file"],
+    form textarea {
+      width: 97%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      transition: border-color 0.3s ease;
+      font-size: 1rem;
+    }
+    form input[type="text"]:focus,
+    form textarea:focus {
+      border-color: #2A9609;
+      outline: none;
+    }
+    form input[type="radio"] {
+      margin-right: 5px;
+    }
+    /* Declaration */
+    form input[type="checkbox"] {
+      margin-right: 10px;
+      transform: scale(1.2);
+    }
+    /* Button Style */
+    .buttons {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .buttons input[type="submit"],
+    .buttons input[type="reset"] {
+      background: #2fa70b;
+      color: #fff;
+      border: none;
+      padding: 10px 50px;
+      font-size: 1rem;
+      margin: 5px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .buttons input[type="submit"]:hover,
+    .buttons input[type="reset"]:hover {
+      background: #1f8300;
+    }
+    /* Responsive adjustments */
+    @media screen and (max-width: 768px) {
+      .container {
+        margin: 1rem;
+        padding: 1rem;
+      }
+      header h1 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="s1.jpg" alt="Banner Image">
+    
+    <header>
+      <h1>Scholarship For Girls</h1>
+      <p>By Manathmagalam Juma Masjid</p>
+    </header>
+    
+    <hr>
+    
+    <h2>Instructions</h2>
+    <ul><big>
+      <li>Candidate should be a girl.</li>
+      <li>Candidate must be studying at a madrasa (10th standard).</li>
+      <li>Valid for madrasas under Samastha located in Manathmagalam.</li>
+      <li>" * " details must be provided.</li>
+      <li>Declaration must be read and agreed upon.</li>
+      <li>Data must be in English.</li>
+    </big></ul>
+    
+    <h2>Application Form</h2>
+    <form method="post" action="form.html" id="form" enctype="multipart/form-data">
+      <label for="candidate">Name of Candidate*:</label>
+      <input type="text" id="candidate" name="candidate" required>
+      
+      <label for="father">Name of Father/Guardian*:</label>
+      <input type="text" id="father" name="father" required>
+      
+      <label for="hname">House Name*:</label>
+      <input type="text" id="hname" name="hname" required>
+      
+      <label for="num">Phone Number*:</label>
+      <input type="text" id="num" name="num" required>
+      
+      <label for="image">Photo:</label>
+      <input type="file" id="image" accept="image/*" name="image">
+      
+      <label for="address">Mahall Registration No & Address*:</label>
+      <textarea id="address" rows="4" name="address" required></textarea>
+      
+      <label>Name of Madrasa*:</label>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="re" value="HIM" id="him">
+      <label for="him" style="display:inline;">HIM</label>
+      <input type="radio" name="re" value="BTM" id="btm">
+      <label for="btm" style="display:inline;">BTM</label>
+      <input type="radio" name="re" value="NIM" id="nim">
+      <label for="nim" style="display:inline;">NIM</label>
+      
+      <label for="addnum">Admission Number*:</label>
+      <input type="text" id="addnum" name="addnum" required>
+      
+      <h2>Declaration*</h2><br>
+      <input type="checkbox" id="declaration" name="declaration" value="agree" required>
+      <label for="declaration" style="display:inline;"><big>I hereby declare that the information given above and in the enclosed documents is true to the best of my knowledge and belief, and nothing has been concealed therein. I understand that if the information given by me is proven false/not true, the scholarship will be rejected.</big><br>&nbsp;&nbsp;&nbsp;&nbsp;<small>മുകളിൽ നൽകിയിരിക്കുന്ന വിവരങ്ങളും ഇതോടൊപ്പം നൽകിയിരിക്കുന്ന രേഖകളും എന്റെ അറിവിലും വിശ്വാസത്തിലും പെട്ടിടത്തോളം സത്യമാണെന്നും അതിൽ ഒന്നും മറച്ചുവെച്ചിട്ടില്ലെന്നും ഞാൻ ഇതിനാൽ പ്രഖ്യാപിക്കുന്നു. ഞാൻ നൽകിയ വിവരങ്ങൾ തെറ്റാണെന്ന്/സത്യമല്ലെന്ന് തെളിയിക്കപ്പെട്ടാൽ സ്കോളർഷിപ്പ് നിരസിക്കപ്പെടുമെന്ന് ഞാൻ മനസ്സിലാക്കുന്നു</small>.</label>
+      
+      <div class="buttons">
+        <p class="app-number" id="appNumber"></p>
+        <input type="submit" value="Submit" id="submitButton"class="btn" onclick="generateApplicationNumber()">
+        <input type="reset" value="Reset">
+      </div>
+    </form>
+      <script>
+      // Ensure the DOM is fully loaded before attaching event listeners.
+      document.addEventListener('DOMContentLoaded', function() {
+        // Listen for changes in the file input and store image as Base64 in localStorage.
+        document.getElementById("image").addEventListener("change", function() {
+          const file = this.files[0];
+          if (file) {
+            const reader = new FileReader();
+            reader.onloadend = function() {
+              // Save the image data in localStorage as a Base64 encoded string.
+              localStorage.setItem("imageData", reader.result);
+            };
+            reader.readAsDataURL(file);
+          }
+        });
+    
+        // Save other form data in localStorage upon form submission and redirect.
+        document.getElementById('form').addEventListener('submit', function(event) {
+          event.preventDefault();
+          localStorage.setItem('candidate', document.getElementById('candidate').value);
+          localStorage.setItem('father', document.getElementById('father').value);
+          localStorage.setItem('hname', document.getElementById('hname').value);
+          localStorage.setItem('num', document.getElementById('num').value);
+          localStorage.setItem('address', document.getElementById('address').value);
+          localStorage.setItem('addnum', document.getElementById('addnum').value);
+    
+          const madrasa = document.querySelector('input[name="re"]:checked');
+          localStorage.setItem('re', madrasa ? madrasa.value : '');
+          localStorage.setItem('declaration', document.getElementById('declaration').checked ? "Agreed" : "Not Agreed");
+    
+          // Redirect to the display page where the data is shown.
+          window.location.href = "form.html";
+        });
+      });
+      function generateApplicationNumber() {
+            const currentYear = new Date().getFullYear();
+            let appCounter = localStorage.getItem("appCounter") || 1;
+
+            // Ensure it's two digits
+            let appNumber = currentYear.toString() + String(appCounter).padStart(2, '0');
+            
+            // Display application number
+            document.getElementById("appNumber").innerText = appNumber;
+
+            // Store the latest generated number (not final save)
+            localStorage.setItem("currentAppNumber", appNumber);
+        }
+    </script>
+  </div>
+  <BR> <marquee height="5%" bgcolor="pink">Thank you for visit&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;جزاك الله خيراً&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;Thank you for visit&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;جزاك الله خيراً&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;Thank you for visit&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;جزاك الله خيراً&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;Thank you for visit&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;جزاك الله خيراً&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;</marquee>
+ </body>
+</html>
