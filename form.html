@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- Essential meta tag for responsive design -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Collected Form Data</title>
+  <!-- Include html2pdf library from CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <!-- Google Fonts for enhanced typography -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+  <style>
+    /* Base styles for clean, modern look */
+    body {
+      background: #f0f0f0;
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+    .wrapper {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+      padding: 10px;
+    }
+    header h1 {
+      font-size: 2rem;
+      color: #2A9609;
+      margin-bottom: 0.5rem;
+    }
+    header p {
+      font-size: 1rem;
+      color: #555;
+    }
+    .instructions {
+      background: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .instructions h5 {
+      font-size: 1.1rem;
+      color: #f50202;
+      margin-bottom: 10px;
+    }
+    .box {
+      width: 30%;
+      font-size: 1.5rem;
+      color: #070db5;
+      margin: 20px auto;
+      padding: 20px;
+      background: #f4f4f4;
+      border-radius: 8px;
+      text-align: center;
+    }
+    #pdf-content {
+      background: #fff;
+      border: 1px solid #ddd;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+    #pdf-content h2 {
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    #pdf-content p {
+      font-size: 16px;
+      line-height: 1.5;
+      margin: 10px 0;
+    }
+    #pdf-content img {
+      max-width: 200px;
+      width: 100%;
+      display: block;
+      margin: 20px auto;
+    }
+    .btn-group {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .btn {
+      background-color: #2A9609;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1rem;
+      margin: 0 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s;
+    }
+    .btn:hover {
+      background-color: #237c07;
+      transform: translateY(-2px);
+    }
+    /* Additional emphasis style */
+    h6 {
+      color: #f50202;
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
+      border-bottom: 2px solid #f10000;
+      display: inline-block;
+      padding-bottom: 5px;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 1024px) {
+      .wrapper { 
+        padding: 15px;
+      }
+      #pdf-content,
+      .instructions {
+        padding: 15px;
+      }
+    }
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 1.75rem;
+      }
+      header p {
+        font-size: 0.9rem;
+      }
+      .box {
+        width: 80%;
+        font-size: 1.3rem;
+        padding: 15px;
+      }
+      #pdf-content {
+        padding: 15px;
+      }
+      #pdf-content h2 {
+        font-size: 1.5rem;
+      }
+      #pdf-content p {
+        font-size: 14px;
+      }
+      .btn {
+        width: 100%;
+        margin: 10px 0;
+      }
+    }
+    @media (max-width: 480px) {
+      header h1 {
+        font-size: 1.5rem;
+      }
+      .box {
+        width: 90%;
+        font-size: 1.2rem;
+      }
+      #pdf-content h2 {
+        font-size: 1.3rem;
+      }
+      #pdf-content p {
+        font-size: 13px;
+      }
+      .btn {
+        padding: 10px;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <h1>Collected Candidate Data</h1>
+      <p>Please verify your information below</p>
+    </header>
+
+    <div class="instructions">
+      <h5>Verify Your Details</h5>
+      <p>
+        Check that the given information is true. If you notice any errors, click
+        <strong>Go Back</strong>. Otherwise, click <strong>Download PDF &amp; Submit</strong> to apply.
+      </p>
+    </div>
+
+    <div class="box">
+      <p><strong>Application Number:</strong></p>
+      <p class="app-number" id="appNumber">Loading...</p>
+    </div>
+
+    <div id="pdf-content">
+      <h2>Candidate Details</h2>
+      <img id="displayImage" alt="Uploaded Photo">
+      <p id="candidateDisplay"></p>
+      <p id="fatherDisplay"></p>
+      <p id="hnameDisplay"></p>
+      <p id="numDisplay"></p>
+      <p id="addressDisplay"></p>
+      <p id="madrasaDisplay"></p>
+      <p id="addnumDisplay"></p>
+      <p id="declarationDisplay"></p>
+    </div>
+
+    <!-- Hidden form used to send data to Google Sheets -->
+    <form method="post" id="pdfForm" action="generate_pdf.php" name="google-sheet" style="display: none;">
+      <input type="hidden" name="applicationnumber" id="input_applicationnumber">
+      <input type="hidden" name="candidate" id="input_candidate">
+      <input type="hidden" name="father" id="input_father">
+      <input type="hidden" name="hname" id="input_hname">
+      <input type="hidden" name="num" id="input_num">
+      <input type="hidden" name="image" id="input_image">
+      <input type="hidden" name="address" id="input_address">
+      <input type="hidden" name="re" id="input_re">
+      <input type="hidden" name="addnum" id="input_addnum">
+      <input type="hidden" name="declaration" id="input_declaration">
+    </form>
+
+    <div class="btn-group">
+      <button type="submit" id="btn" class="btn">Download PDF &amp; Submit</button>
+      <button id="goBack" class="btn" type="button">Go Back</button>
+    </div>
+  </div>
+
+  <script>
+    // Set the Application Number from localStorage or display a default message.
+    document.getElementById("appNumber").innerText = 
+      localStorage.getItem("currentAppNumber") || "No Number Generated";
+
+    // Retrieve and display candidate data from localStorage.
+    document.getElementById('candidateDisplay').innerText =
+      "Name of Candidate" + "\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0:" + (localStorage.getItem('candidate') || '');
+    document.getElementById('fatherDisplay').innerText =
+      "Name of Father/Guardian" + "\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0:" + (localStorage.getItem('father') || '');
+    document.getElementById('hnameDisplay').innerText =
+      "House Name" + "\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0:" + (localStorage.getItem('hname') || '');
+    document.getElementById('numDisplay').innerText =
+      "Phone Number" + "\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0:" + (localStorage.getItem('num') || '');
+    document.getElementById('addressDisplay').innerText =
+      "Mahall Registration No & Address " + "\u00A0:" + (localStorage.getItem('address') || '');
+    document.getElementById('madrasaDisplay').innerText =
+      "Name of Madrasa" + "\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0:" + (localStorage.getItem('re') || '');
+    document.getElementById('addnumDisplay').innerText =
+      "Admission Number" + "\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0:" + (localStorage.getItem('addnum') || '');
+    document.getElementById('declarationDisplay').innerText =
+      "Declaration" + "\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0:" + (localStorage.getItem('declaration') || '');
+      
+      // Use the correct key, "imageData", saved from the form page.
+    let storedImage = localStorage.getItem("imageData");
+    if (storedImage) {
+      document.getElementById("displayImage").src = storedImage;
+    } else {
+      // If no image data is present, use the default image f1.jpg
+      document.getElementById("displayImage").src = "f1.jpg";
+    }
+   // Fill hidden form inputs so the PHP file receives all required data.
+    document.getElementById('input_applicationnumber').value = localStorage.getItem("currentAppNumber") || "";
+    document.getElementById('input_candidate').value = localStorage.getItem("candidate") || "";
+    document.getElementById('input_father').value = localStorage.getItem("father") || "";
+    document.getElementById('input_hname').value = localStorage.getItem("hname") || "";
+    document.getElementById('input_num').value = localStorage.getItem("num") || "";
+    document.getElementById('input_image').value = localStorage.getItem("imageData") || "";
+    document.getElementById('input_address').value = localStorage.getItem("address") || "";
+    document.getElementById('input_re').value = localStorage.getItem("re") || "";
+    document.getElementById('input_addnum').value = localStorage.getItem("addnum") || "";
+    document.getElementById('input_declaration').value = localStorage.getItem("declaration") || "";
+
+    // The "Go Back" button.
+    document.getElementById('goBack').addEventListener('click', function() {
+      window.history.back();
+    });
+
+    // Google Apps Script endpoint to store data in Google Sheets
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbw_w0EtEWaB71a1EdHfpZBXx3MoPNvoE1UfSR03WGzKfVpQFrVQUJWqaVtqlJsEFYdnzA/exec';
+    const form = document.forms['google-sheet'];
+    //AKfycbw_w0EtEWaB71a1EdHfpZBXx3MoPNvoE1UfSR03WGzKfVpQFrVQUJWqaVtqlJsEFYdnzA
+
+    // Listen for the submit event on the form.
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => alert("Thanks for Contacting us..! We Will Contact You Soon..."))
+        .catch(error => console.error('Error!', error.message));
+    });
+
+    // Download PDF & Submit button click event.
+    document.getElementById("downloadPDF").addEventListener("click", function() {
+      let currentAppNumber = localStorage.getItem("currentAppNumber");
+      if (currentAppNumber) {
+        // Increment the application counter for next use.
+        let newCounter = parseInt(currentAppNumber.slice(-2)) + 1;
+        localStorage.setItem("appCounter", newCounter);
+        // Store final application number.
+        localStorage.setItem("savedAppNumber", currentAppNumber);
+        alert("Application Submitted! Your Application Number: " + currentAppNumber);
+
+        // Programmatically trigger the form submission.
+        form.dispatchEvent(new Event('submit'));
+      } else {
+        alert("Please generate an application number first!");
+      }
+    });
+  </script>
+</body>
+
+</html>
